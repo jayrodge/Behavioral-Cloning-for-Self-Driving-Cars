@@ -13,12 +13,12 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
+[image2]: ./examples/center_2016_12_01_13_31_15_308.jpg "Center Image"
+[image3]: ./examples/left_2016_12_01_13_35_38_405.jpg "Recovery Image"
+[image4]: ./examples/right_2016_12_01_13_35_38_405.jpg "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image6]: ./examples/normal.png "Normal Image"
+[image7]: ./examples/flipped.png "Flipped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -121,11 +121,11 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to get back to the center. These images show what a recovery looks like starting from ... :
 
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
+
 
 Then I repeated this process on track two in order to get more data points.
 
@@ -134,11 +134,7 @@ To augment the data sat, I also flipped images and angles thinking that this wou
 ![alt text][image6]
 ![alt text][image7]
 
-Etc ....
+After the collection process, I then preprocessed this data by cropping the image by adding a cropping layer, since excess data is provided in the top such as sky, trees which are unneccesary.
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by model.fit() I used an adam optimizer so that manually training the learning rate wasn't necessary.
