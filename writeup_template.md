@@ -68,45 +68,52 @@ My model consists of a convolution neural network with 3x3 filter sizes and dept
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains dropout layers in order to reduce overfitting (model.py lines 56). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on large dataset which was created using data augmentation. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 60).
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
-
-For details about how I created the training data, see the next section. 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.
 
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to achieve a least loss possible and avoiding overfitting
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to use a convolution neural network model similar to the traffic classifier project. I thought this model might be appropriate because it has dropout layers which helps the model to generalize better.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model so that ...
+To combat the overfitting, I modified the model so that added Dropout layers which helps the model to generalize better.
 
-Then I ... 
+Then I used data augmentation in which I used the same dataset to generate more training samples by simply reversing the image using np.fliplr and adding negative to the corresponding measurement or the angle.
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track like after the bridge and to improve the driving behavior in these cases, I trained the model again with few different parameters
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 46-58) consisted of a convolution neural network with the following layers and layer sizes | Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 160x320x3  image   							| 
+| Cropping     	|  outputs 65x320x3 	|
+| Convolution (relu)				|	5x5 stride,	Outputs 61x316x6										|
+| Max pooling	      	| 2x2 stride,  outputs 30x158x6 				|
+| Convolution (relu)	    |  outputs 26x158x6 |
+| Max Pooling |  outputs 13x77x6 |
+| Flatten | 6006 |
+| Fully Connected |  Output: 60 |
+| Dropout | 0.2 |
+|Fully Connected |  Output: 10 |
+|Fully Connected | Output: 1 |
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
