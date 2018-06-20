@@ -1,11 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
 **Behavioral Cloning Project**
 
 The goals / steps of this project are the following:
@@ -56,7 +50,21 @@ The model.py file contains the code for training and saving the convolution neur
 
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 160x320x3  image   							| 
+| Cropping     	|  outputs 65x320x3 	|
+| Convolution (relu)				|	5x5 stride,	Outputs 61x316x6										|
+| Max pooling	      	| 2x2 stride,  outputs 30x158x6 				|
+| Convolution (relu)	    |  outputs 26x158x6 |
+| Max Pooling |  outputs 13x77x6 |
+| Flatten | 6006 |
+| Fully Connected |  Output: 60 |
+| Dropout | 0.2 |
+|Fully Connected |  Output: 10 |
+|Fully Connected | Output: 1 |
+
+
 
 #### 2. Attempts to reduce overfitting in the model
 
